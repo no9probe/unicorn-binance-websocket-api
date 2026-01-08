@@ -240,8 +240,8 @@ class BinanceWebSocketApiApiFutures(object):
         return True
 
     def create_order(self,
-                     activation_price: float = None,
-                     callback_rate: float = None,
+                     activation_price=None,
+                     callback_rate=None,
                      close_position: bool = None,
                      good_till_date: int = None,
                      new_client_order_id: str = None,
@@ -249,12 +249,12 @@ class BinanceWebSocketApiApiFutures(object):
                      order_type: Optional[Literal['LIMIT', 'LIMIT_MAKER', 'MARKET', 'STOP_LOSS', 'STOP_LOSS_LIMIT',
                                                   'TAKE_PROFIT', 'TAKE_PROFIT_LIMIT']] = None,
                      position_side: Optional[Literal['BOTH', 'LONG', 'SHORT']] = None,
-                     price: float = 0.0,
+                     price=0.0,
                      price_match: Optional[Literal['OPPONENT', 'OPPONENT_5', 'OPPONENT_10', 'OPPONENT_20', 'QUEUE',
                                                    'QUEUE_5', 'QUEUE_10, QUEUE_20']] = None,
                      price_protect: bool = None,
                      process_response=None,
-                     quantity: float = None,
+                     quantity=None,
                      recv_window: int = None,
                      reduce_only: bool = None,
                      request_id: str = None,
@@ -262,7 +262,7 @@ class BinanceWebSocketApiApiFutures(object):
                      self_trade_prevention_mode: Optional[Literal['EXPIRE_TAKER', 'EXPIRE_MAKER',
                                                                   'EXPIRE_BOTH', 'NONE']] = None,
                      side: Optional[Literal['BUY', 'SELL']] = None,
-                     stop_price: float = None,
+                     stop_price=None,
                      stream_id: str = None,
                      stream_label: str = None,
                      symbol: str = None,
@@ -282,9 +282,9 @@ class BinanceWebSocketApiApiFutures(object):
 
         :param activation_price: Used with TRAILING_STOP_MARKET orders, default as the latest price(supporting
                                  different workingType)
-        :type activation_price: float
+        :type activation_price: str or float
         :param callback_rate: Used with TRAILING_STOP_MARKET orders, min 0.1, max 5 where 1 for 1%
-        :type callback_rate: float
+        :type callback_rate: str or float
         :param close_position: True, False；Close-All，used with STOP_MARKET or TAKE_PROFIT_MARKET.
         :type close_position: bool
         :param good_till_date: Order cancel time for timeInForce GTD, mandatory when timeInforce set to GTD; order the
@@ -317,7 +317,7 @@ class BinanceWebSocketApiApiFutures(object):
 
         :type order_type: str
         :param price: Price e.g. 10.223
-        :type price: float
+        :type price: str or float
         :param position_side: Default BOTH for One-way Mode; LONG or SHORT for Hedge Mode. It must be sent in Hedge
                               Mode.
         :type position_side: str
@@ -332,7 +332,7 @@ class BinanceWebSocketApiApiFutures(object):
                                  of this specific request.
         :type process_response: function
         :param quantity: Amount e.g. 20.5
-        :type quantity: float
+        :type quantity: str or float
         :param recv_window: An additional parameter, `recvWindow`, may be sent to specify the number of milliseconds
                             after timestamp the request is valid for. If `recvWindow` is not sent, it defaults to 5000.
                             The value cannot be greater than 60000.
@@ -361,7 +361,7 @@ class BinanceWebSocketApiApiFutures(object):
                              - `stopPrice` must be above market price: STOP_LOSS BUY, TAKE_PROFIT SELL
 
                              - stopPrice must be below market price: STOP_LOSS SELL, TAKE_PROFIT BUY
-        :type stop_price: float
+        :type stop_price: str or float
         :param symbol: The symbol you want to trade
         :type symbol: str
         :param time_in_force: Available timeInForce options, setting how long the order should be active before
@@ -488,9 +488,9 @@ class BinanceWebSocketApiApiFutures(object):
                   "type": order_type}
 
         if activation_price is not None:
-            params['activationPrice'] = activation_price
+            params['activationPrice'] = str(activation_price)
         if callback_rate is not None:
-            params['callbackRate'] = callback_rate
+            params['callbackRate'] = str(callback_rate)
         if close_position is not None:
             params['closePosition'] = "true" if close_position is True else "false"
         if good_till_date is not None:
@@ -1958,11 +1958,11 @@ class BinanceWebSocketApiApiFutures(object):
     def modify_order(self,
                      order_id: int = None,
                      orig_client_order_id: str = None,
-                     price: float = 0.0,
+                     price=0.0,
                      price_match: Optional[Literal['OPPONENT', 'OPPONENT_5', 'OPPONENT_10', 'OPPONENT_20', 'QUEUE',
                                                    'QUEUE_5', 'QUEUE_10, QUEUE_20']] = None,
                      process_response=None,
-                     quantity: float = None,
+                     quantity=None,
                      recv_window: int = None,
                      request_id: str = None,
                      return_response: bool = False,
@@ -1991,7 +1991,7 @@ class BinanceWebSocketApiApiFutures(object):
                                      are specified, only `orderId` is used and `origClientOrderId` is ignored.
         :type orig_client_order_id: str
         :param price: Price e.g. 10.223
-        :type price: float
+        :type price: str or float
         :param price_match: only available for LIMIT/STOP/TAKE_PROFIT order; can be set to OPPONENT/ OPPONENT_5/
                             OPPONENT_10/ OPPONENT_20: /QUEUE/ QUEUE_5/ QUEUE_10/ QUEUE_20; Can't be passed together
                             with price
@@ -2000,7 +2000,7 @@ class BinanceWebSocketApiApiFutures(object):
                                  of this specific request.
         :type process_response: function
         :param quantity: Amount e.g. 20.5
-        :type quantity: float
+        :type quantity: str or float
         :param recv_window: An additional parameter, `recvWindow`, may be sent to specify the number of milliseconds
                             after timestamp the request is valid for. If `recvWindow` is not sent, it defaults to 5000.
                             The value cannot be greater than 60000.

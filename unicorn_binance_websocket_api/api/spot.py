@@ -104,24 +104,24 @@ class BinanceWebSocketApiApiSpot(object):
                                  cancel_new_client_order_id: str = None,
                                  cancel_replace_mode: Optional[Literal['STOP_ON_FAILURE', 'ALLOW_FAILURE']] = "STOP_ON_FAILURE",
                                  cancel_restrictions: Optional[Literal['ONLY_NEW', 'ONLY_PARTIALLY_FILLED']] = None,
-                                 iceberg_qty: float = None,
+                                 iceberg_qty=None,
                                  new_client_order_id: str = None,
                                  new_order_resp_type: Optional[Literal['ACK', 'RESULT', 'FULL']] = None,
                                  order_rate_limit_exceeded_mode: Optional[Literal['DO_NOTHING', 'CANCEL_ONLY']] = None,
                                  order_type: Optional[Literal['LIMIT', 'LIMIT_MAKER', 'MARKET', 'STOP_LOSS',
                                                               'STOP_LOSS_LIMIT', 'TAKE_PROFIT',
                                                               'TAKE_PROFIT_LIMIT']] = None,
-                                 price: float = 0.0,
+                                 price=0.0,
                                  process_response=None,
-                                 quantity: float = None,
-                                 quote_order_qty: float = None,
+                                 quantity=None,
+                                 quote_order_qty=None,
                                  recv_window: int = None,
                                  request_id: str = None,
                                  return_response: bool = False,
                                  self_trade_prevention_mode: Optional[Literal['EXPIRE_TAKER', 'EXPIRE_MAKER',
                                                                               'EXPIRE_BOTH', 'NONE']] = None,
                                  side: Optional[Literal['BUY', 'SELL']] = None,
-                                 stop_price: float = None,
+                                 stop_price=None,
                                  strategy_id: int = None,
                                  strategy_type: int = None,
                                  stream_id: str = None,
@@ -166,7 +166,7 @@ class BinanceWebSocketApiApiSpot(object):
         :type cancel_restrictions: str
         :param iceberg_qty: Any `LIMIT` or `LIMIT_MAKER` order can be made into an iceberg order by specifying the
                             `icebergQty`. An order with an `icebergQty` must have `timeInForce` set to `GTC`.
-        :type iceberg_qty: float
+        :type iceberg_qty: str or float
         :param new_client_order_id: `newClientOrderId` specifies `clientOrderId` value for the order. A new order with
                                     the same 'clientOrderId' is accepted only when the previous one is filled or
                                     expired.
@@ -202,14 +202,14 @@ class BinanceWebSocketApiApiSpot(object):
                              - TAKE_PROFIT_LIMIT: 'timeInForce', 'price', 'quantity', 'stopPrice' or 'trailingDelta'
         :type order_type: str
         :param price: Price e.g. 10.223
-        :type price: float
+        :type price: str or float
         :param process_response: Provide a function/method to process the received webstream data (callback)
                                  of this specific request.
         :type process_response: function
         :param quantity: Amount e.g. 20.5
-        :type quantity: float
+        :type quantity: str or float
         :param quote_order_qty: Amount e.g. 20.5
-        :type quote_order_qty: float
+        :type quote_order_qty: str or float
         :param recv_window: An additional parameter, `recvWindow`, may be sent to specify the number of milliseconds
                             after timestamp the request is valid for. If `recvWindow` is not sent, it defaults to 5000.
                             The value cannot be greater than 60000.
@@ -240,7 +240,7 @@ class BinanceWebSocketApiApiSpot(object):
                              - `stopPrice` must be above market price: STOP_LOSS BUY, TAKE_PROFIT SELL
 
                              - stopPrice must be below market price: STOP_LOSS SELL, TAKE_PROFIT BUY
-        :type stop_price: float
+        :type stop_price: str or float
         :param symbol: The symbol you want to trade
         :type symbol: str
         :param time_in_force: Available timeInForce options, setting how long the order should be active before
@@ -846,22 +846,22 @@ class BinanceWebSocketApiApiSpot(object):
         return True
 
     def create_order(self,
-                     iceberg_qty: float = None,
+                     iceberg_qty=None,
                      new_client_order_id: str = None,
                      new_order_resp_type: Optional[Literal['ACK', 'RESULT', 'FULL']] = None,
                      order_type: Optional[Literal['LIMIT', 'LIMIT_MAKER', 'MARKET', 'STOP_LOSS', 'STOP_LOSS_LIMIT',
                                                   'TAKE_PROFIT', 'TAKE_PROFIT_LIMIT']] = None,
-                     price: float = 0.0,
+                     price=0.0,
                      process_response=None,
-                     quantity: float = None,
-                     quote_order_qty: float = None,
+                     quantity=None,
+                     quote_order_qty=None,
                      recv_window: int = None,
                      request_id: str = None,
                      return_response: bool = False,
                      self_trade_prevention_mode: Optional[Literal['EXPIRE_TAKER', 'EXPIRE_MAKER',
                                                                   'EXPIRE_BOTH', 'NONE']] = None,
                      side: Optional[Literal['BUY', 'SELL']] = None,
-                     stop_price: float = None,
+                     stop_price=None,
                      strategy_id: int = None,
                      strategy_type: int = None,
                      stream_id: str = None,
@@ -881,7 +881,7 @@ class BinanceWebSocketApiApiSpot(object):
 
         :param iceberg_qty: Any `LIMIT` or `LIMIT_MAKER` order can be made into an iceberg order by specifying the
                             `icebergQty`. An order with an `icebergQty` must have `timeInForce` set to `GTC`.
-        :type iceberg_qty: float
+        :type iceberg_qty: str or float
         :param new_client_order_id: `newClientOrderId` specifies `clientOrderId` value for the order. A new order with
                                     the same 'clientOrderId' is accepted only when the previous one is filled or
                                     expired.
@@ -910,14 +910,14 @@ class BinanceWebSocketApiApiSpot(object):
                              - TAKE_PROFIT_LIMIT: 'timeInForce', 'price', 'quantity', 'stopPrice' or 'trailingDelta'
         :type order_type: str
         :param price: Price e.g. 10.223
-        :type price: float
+        :type price: str or float
         :param process_response: Provide a function/method to process the received webstream data (callback)
                                  of this specific request.
         :type process_response: function
         :param quantity: Amount e.g. 20.5
-        :type quantity: float
+        :type quantity: str or float
         :param quote_order_qty: Amount e.g. 20.5
-        :type quote_order_qty: float
+        :type quote_order_qty: str or float
         :param recv_window: An additional parameter, `recvWindow`, may be sent to specify the number of milliseconds
                             after timestamp the request is valid for. If `recvWindow` is not sent, it defaults to 5000.
                             The value cannot be greater than 60000.
@@ -948,7 +948,7 @@ class BinanceWebSocketApiApiSpot(object):
                              - `stopPrice` must be above market price: STOP_LOSS BUY, TAKE_PROFIT SELL
 
                              - stopPrice must be below market price: STOP_LOSS SELL, TAKE_PROFIT BUY
-        :type stop_price: float
+        :type stop_price: str or float
         :param symbol: The symbol you want to trade
         :type symbol: str
         :param test: Test order placement. Validates new order parameters and verifies your signature but does not
@@ -1124,22 +1124,22 @@ class BinanceWebSocketApiApiSpot(object):
 
         return new_client_order_id
 
-    def create_test_order(self, iceberg_qty: float = None,
+    def create_test_order(self, iceberg_qty=None,
                           new_client_order_id: str = None,
                           new_order_resp_type: Optional[Literal['ACK', 'RESULT', 'FULL']] = None,
                           order_type: Optional[Literal['LIMIT', 'LIMIT_MAKER', 'MARKET', 'STOP_LOSS', 'STOP_LOSS_LIMIT',
                                                        'TAKE_PROFIT', 'TAKE_PROFIT_LIMIT']] = None,
-                          price: float = 0.0,
+                          price=0.0,
                           process_response=None,
-                          quantity: float = None,
-                          quote_order_qty: float = None,
+                          quantity=None,
+                          quote_order_qty=None,
                           recv_window: int = None,
                           request_id: str = None,
                           return_response: bool = False,
                           self_trade_prevention_mode: Optional[Literal['EXPIRE_TAKER', 'EXPIRE_MAKER',
                                                                        'EXPIRE_BOTH', 'NONE']] = None,
                           side: Optional[Literal['BUY', 'SELL']] = None,
-                          stop_price: float = None,
+                          stop_price=None,
                           strategy_id: int = None,
                           strategy_type: int = None,
                           stream_id: str = None,
@@ -1160,7 +1160,7 @@ class BinanceWebSocketApiApiSpot(object):
 
         :param iceberg_qty: Any `LIMIT` or `LIMIT_MAKER` order can be made into an iceberg order by specifying the
                             `icebergQty`. An order with an `icebergQty` must have `timeInForce` set to `GTC`.
-        :type iceberg_qty: float
+        :type iceberg_qty: str or float
         :param new_client_order_id: `newClientOrderId` specifies `clientOrderId` value for the order. A new order with
                                     the same 'clientOrderId' is accepted only when the previous one is filled or
                                     expired.
@@ -1189,14 +1189,14 @@ class BinanceWebSocketApiApiSpot(object):
                              - TAKE_PROFIT_LIMIT: 'timeInForce', 'price', 'quantity', 'stopPrice' or 'trailingDelta'
         :type order_type: str
         :param price: Price e.g. 10.223
-        :type price: float
+        :type price: str or float
         :param process_response: Provide a function/method to process the received webstream data (callback)
                                  of this specific request.
         :type process_response: function
         :param quantity: Amount e.g. 20.5
-        :type quantity: float
+        :type quantity: str or float
         :param quote_order_qty: Amount e.g. 20.5
-        :type quote_order_qty: float
+        :type quote_order_qty: str or float
         :param recv_window: An additional parameter, `recvWindow`, may be sent to specify the number of milliseconds
                             after timestamp the request is valid for. If `recvWindow` is not sent, it defaults to 5000.
                             The value cannot be greater than 60000.
@@ -1227,7 +1227,7 @@ class BinanceWebSocketApiApiSpot(object):
                              - `stopPrice` must be above market price: STOP_LOSS BUY, TAKE_PROFIT SELL
 
                              - stopPrice must be below market price: STOP_LOSS SELL, TAKE_PROFIT BUY
-        :type stop_price: float
+        :type stop_price: str or float
         :param symbol: The symbol you want to trade
         :type symbol: str
         :param time_in_force: Available timeInForce options, setting how long the order should be active before
